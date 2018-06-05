@@ -7,11 +7,13 @@ import { NavComponent } from './nav/nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
 import { AppRoutingModule } from './/app-routing.module';
+import { SignSearchComponent } from './sign-search/sign-search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavComponent
+    NavComponent,
+    SignSearchComponent
   ],
   imports: [
     BrowserModule,
