@@ -1,3 +1,18 @@
-<p>
-  sign-search works!
-</p>
+<form>
+  <mat-form-field appearance="fill">
+    <mat-label>
+      <mat-icon>email</mat-icon>
+      信箱
+    </mat-label>
+    <input type="email"
+      name="信箱"
+      matInput
+      required
+      #mailValue/>
+    <mat-hint>輸入信箱查詢報名狀態</mat-hint>
+    <mat-error>輸入信箱阿阿阿</mat-error>
+  </mat-form-field>
+  <br />  <br />
+  <button mat-raised-button color="primary" type="button" (click)="submit(mailValue.value)">送出</button>
+  <p>{{result}}</p>
+</form>
