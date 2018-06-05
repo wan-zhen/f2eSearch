@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Component({
-  selector: 'nav',
+  selector: 'app-nav',
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.css']
 })
@@ -14,7 +14,5 @@ export class NavComponent {
     .pipe(
       map(result => result.matches)
     );
-    
   constructor(private breakpointObserver: BreakpointObserver) {}
-  
   }
