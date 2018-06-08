@@ -10,7 +10,7 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule,
 import { AppRoutingModule } from './/app-routing.module';
 import { SignSearchComponent } from './sign-search/sign-search.component';
 import { HttpClientModule } from '@angular/common/http';
-
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +29,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatInputModule,
     MatFormFieldModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

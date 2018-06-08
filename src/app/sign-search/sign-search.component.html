@@ -1,4 +1,4 @@
-<form>
+<form #myForm="ngForm" (ngSubmit)="submit()">
   <mat-form-field appearance="fill">
     <mat-label>
       <mat-icon>email</mat-icon>
@@ -8,11 +8,18 @@
       name="信箱"
       matInput
       required
-      #mailValue/>
+      [(ngModel)]="mailValue"
+      #name="ngModel"
+      email/>
     <mat-hint>輸入信箱查詢報名狀態</mat-hint>
     <mat-error>輸入信箱阿阿阿</mat-error>
   </mat-form-field>
   <br />  <br />
-  <button mat-raised-button color="primary" type="button" (click)="submit(mailValue.value)">送出</button>
+  <button
+    mat-raised-button
+    color="primary"
+    type="submit"
+    [disabled]="!myForm.form.valid || progress"
+    [innerHTML]="progress?'載入中':'送出'"></button>
   <p>{{result}}</p>
 </form>

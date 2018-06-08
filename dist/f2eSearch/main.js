@@ -142,12 +142,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! .//app-routing.module */ "./src/app/app-routing.module.ts");
 /* harmony import */ var _sign_search_sign_search_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./sign-search/sign-search.component */ "./src/app/sign-search/sign-search.component.ts");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -180,7 +182,8 @@ var AppModule = /** @class */ (function () {
                 _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatInputModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatFormFieldModule"],
                 _app_routing_module__WEBPACK_IMPORTED_MODULE_7__["AppRoutingModule"],
-                _angular_common_http__WEBPACK_IMPORTED_MODULE_9__["HttpClientModule"]
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_9__["HttpClientModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_10__["FormsModule"]
             ],
             providers: [],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"]]
@@ -279,7 +282,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form>\n  <mat-form-field appearance=\"fill\">\n    <mat-label>\n      <mat-icon>email</mat-icon>\n      信箱\n    </mat-label>\n    <input type=\"email\"\n      name=\"信箱\"\n      matInput\n      required\n      #mailValue/>\n    <mat-hint>輸入信箱查詢報名狀態</mat-hint>\n    <mat-error>輸入信箱阿阿阿</mat-error>\n  </mat-form-field>\n  <br />  <br />\n  <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"submit(mailValue.value)\">送出</button>\n  <p>{{result}}</p>\n</form>\n"
+module.exports = "<form #myForm=\"ngForm\" (ngSubmit)=\"submit()\">\n  <mat-form-field appearance=\"fill\">\n    <mat-label>\n      <mat-icon>email</mat-icon>\n      信箱\n    </mat-label>\n    <input type=\"email\"\n      name=\"信箱\"\n      matInput\n      required\n      [(ngModel)]=\"mailValue\"\n      #name=\"ngModel\"\n      email/>\n    <mat-hint>輸入信箱查詢報名狀態</mat-hint>\n    <mat-error>輸入信箱阿阿阿</mat-error>\n  </mat-form-field>\n  <br />  <br />\n  <button\n    mat-raised-button\n    color=\"primary\"\n    type=\"submit\"\n    [disabled]=\"!myForm.form.valid || progress\"\n    [innerHTML]=\"progress?'載入中':'送出'\"></button>\n  <p>{{result}}</p>\n</form>\n"
 
 /***/ }),
 
@@ -310,21 +313,23 @@ var SignSearchComponent = /** @class */ (function () {
     function SignSearchComponent(http) {
         this.http = http;
         this.result = '';
+        this.mailValue = '';
+        this.progress = false;
     }
     SignSearchComponent.prototype.ngOnInit = function () {
     };
-    SignSearchComponent.prototype.submit = function (mailValue) {
+    SignSearchComponent.prototype.submit = function () {
         var _this = this;
-        console.log(mailValue);
-        this.http.post('https://www.thef2e.com/api/isSignUp', { email: mailValue })
+        this.progress = true;
+        this.http.post('https://www.thef2e.com/api/isSignUp', { email: this.mailValue })
             .subscribe(function (result) {
+            _this.progress = false;
             if (result.success === true) {
                 _this.result = "" + result.nickName + result.message;
             }
             else {
                 _this.result = "" + result.message;
             }
-            console.log(result);
         });
     };
     SignSearchComponent = __decorate([

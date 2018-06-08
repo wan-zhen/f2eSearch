@@ -8,21 +8,22 @@ import { HttpClient } from '@angular/common/http';
 })
 export class SignSearchComponent implements OnInit {
   result = '';
-
+  mailValue = '';
+  progress = false;
   constructor(private http: HttpClient) { }
   ngOnInit() {
   }
 
-  submit(mailValue) {
-    console.log(mailValue);
-    this.http.post<any>('https://www.thef2e.com/api/isSignUp', { email: mailValue })
+  submit() {
+    this.progress = true;
+    this.http.post<any>('https://www.thef2e.com/api/isSignUp', { email: this.mailValue })
       .subscribe(result => {
+        this.progress = false;
         if (result.success === true) {
           this.result = `${result.nickName}${result.message}`;
         } else {
           this.result = `${result.message}`;
         }
-        console.log(result);
       });
   }
 }
