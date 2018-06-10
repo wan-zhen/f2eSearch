@@ -147,12 +147,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _todo_list_todo_list_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./todo-list/todo-list.component */ "./src/app/todo-list/todo-list.component.ts");
+/* harmony import */ var _ng_pipe_sort_pipe__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./ng-pipe/sort.pipe */ "./src/app/ng-pipe/sort.pipe.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -174,7 +176,8 @@ var AppModule = /** @class */ (function () {
                 _app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"],
                 _nav_nav_component__WEBPACK_IMPORTED_MODULE_4__["NavComponent"],
                 _sign_search_sign_search_component__WEBPACK_IMPORTED_MODULE_8__["SignSearchComponent"],
-                _todo_list_todo_list_component__WEBPACK_IMPORTED_MODULE_11__["TodoListComponent"]
+                _todo_list_todo_list_component__WEBPACK_IMPORTED_MODULE_11__["TodoListComponent"],
+                _ng_pipe_sort_pipe__WEBPACK_IMPORTED_MODULE_12__["SortPipe"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
@@ -266,6 +269,53 @@ var NavComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [_angular_cdk_layout__WEBPACK_IMPORTED_MODULE_1__["BreakpointObserver"]])
     ], NavComponent);
     return NavComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/ng-pipe/sort.pipe.ts":
+/*!**************************************!*\
+  !*** ./src/app/ng-pipe/sort.pipe.ts ***!
+  \**************************************/
+/*! exports provided: SortPipe */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SortPipe", function() { return SortPipe; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var SortPipe = /** @class */ (function () {
+    function SortPipe() {
+    }
+    SortPipe.prototype.transform = function (array, field) {
+        array.sort(function (a, b) {
+            if (a[field] > b[field]) {
+                return -1;
+            }
+            else if (a[field] < b[field]) {
+                return 1;
+            }
+            else {
+                return 0;
+            }
+        });
+        return array;
+    };
+    SortPipe = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Pipe"])({
+            name: 'sort'
+        })
+    ], SortPipe);
+    return SortPipe;
 }());
 
 
@@ -373,7 +423,7 @@ module.exports = ".add {\r\n  background: #3c3c3c;\r\n}\r\n\r\n.add .colms {\r\n
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-tab-group>\n  <mat-tab *ngFor=\"let tab of tabs;let tabIndex = index;\">\n    <ng-template mat-tab-label>\n      {{tab.title}}\n    </ng-template>\n\n    <mat-nav-list *ngIf=\"tabIndex===0\">\n      <mat-list-item [ngStyle]=\"{background: adding?'#525252':''}\" (click)=\"adding=true\">\n        <mat-icon>add</mat-icon>\n        <span *ngIf=\"!adding\">Add Task</span>\n        <mat-form-field *ngIf=\"adding\">\n            <input name=\"title\" type=\"text\" required matInput [(ngModel)]=\"addTitle\" />\n          </mat-form-field>\n      </mat-list-item>\n    </mat-nav-list>\n    <form #addForm=\"ngForm\" (ngSubmit)=\"add();\" *ngIf=\"adding\" class=\"add\">\n      <div class=\"colms\">\n        <!-- 到期日 -->\n        <p>\n          <mat-icon>date_range</mat-icon> Deadline\n        </p>\n        <mat-form-field>\n          <input name=\"date\" type=\"date\" matInput [(ngModel)]=\"addDate\" />\n        </mat-form-field>\n        <!-- 附檔 -->\n        <p>\n          <mat-icon>insert_drive_file</mat-icon> File\n        </p>\n        <button mat-raised-button mat-icon-button color=\"accent\">\n          <mat-icon>add</mat-icon>\n        </button>\n        <!-- 說明 -->\n        <p>\n          <mat-icon>chat</mat-icon> Comments\n        </p>\n        <mat-form-field>\n          <textarea name=\"memo\" matInput placeholder=\"Type your memo here...\" [(ngModel)]=\"addMemo\"></textarea>\n        </mat-form-field>\n      </div>\n      <div>\n        <button type=\"button\" (click)=\"adding=false\" style=\"width: 50%\" mat-raised-button color=\"warning\">\n          <mat-icon>close</mat-icon> Cancel\n        </button>\n        <button style=\"width: 50%\" mat-raised-button color=\"primary\">\n          <mat-icon>add</mat-icon> Add Task\n        </button>\n      </div>\n    </form>\n\n    <div class=\"list\" *ngFor=\"let item of getTasks(tabIndex);let taskIndex=index;\">\n      <div class=\"list-title\" [ngStyle]=\"{background: item.important ? '#c2185b':'#3c3c3c'}\">\n        <button color=\"{{item.edit?'primary':''}}\" (click)=\"item.edit=true;edit(taskIndex)\" mat-icon-button style=\"float: right;\">\n          <mat-icon>create</mat-icon>\n        </button>\n        <button (click)=\"item.important=!item.important\" mat-icon-button style=\"float: right;\">\n          <mat-icon [innerHTML]=\"item.important ? 'star' : 'star_border'\"></mat-icon>\n        </button>\n        <h2 style=\"padding-left: 16px\" [class]=\"item.selected?'del-status':''\">\n          <mat-checkbox [(ngModel)]=\"item.selected\">{{item.title}}</mat-checkbox>\n        </h2>\n        <div class=\"icon-group\">\n          <span *ngIf=\"item.date\">\n            <mat-icon color=\"accent\">date_range</mat-icon>\n            {{item.date}}\n          </span>\n          <mat-icon *ngIf=\"item.file\" color=\"accent\">insert_drive_file</mat-icon>\n          <mat-icon *ngIf=\"item.memo\" color=\"accent\">chat</mat-icon>\n        </div>\n      </div>\n      <!-- start編輯區 -->\n      <form #editForm=\"ngForm\" (ngSubmit)=\"save(taskIndex);item.edit=false;\" *ngIf=\"item.edit\" class=\"list-edit\">\n        <div class=\"colms\">\n          <!-- 到期日 -->\n          <p>\n            <mat-icon>date_range</mat-icon> Deadline\n          </p>\n          <mat-form-field>\n            <input name=\"date\" type=\"date\" matInput [(ngModel)]=\"newDate\" />\n          </mat-form-field>\n          <!-- 附檔 -->\n          <p>\n            <mat-icon>insert_drive_file</mat-icon> File\n          </p>\n          <button mat-raised-button mat-icon-button color=\"accent\">\n            <mat-icon>add</mat-icon>\n          </button>\n          <!-- 說明 -->\n          <p>\n            <mat-icon>chat</mat-icon> Comments\n          </p>\n          <mat-form-field>\n            <textarea name=\"memo\" matInput placeholder=\"Type your memo here...\" [(ngModel)]=\"newMemo\"></textarea>\n          </mat-form-field>\n        </div>\n        <div>\n          <button type=\"button\" (click)=\"item.edit=false\" style=\"width: 50%\" mat-raised-button color=\"warning\">\n            <mat-icon>close</mat-icon> Cancel\n          </button>\n          <button style=\"width: 50%\" mat-raised-button color=\"primary\">\n            <mat-icon>add</mat-icon> Save\n          </button>\n        </div>\n      </form>\n    </div>\n  </mat-tab>\n</mat-tab-group>\n"
+module.exports = "<mat-tab-group>\n  <mat-tab *ngFor=\"let tab of tabs;let tabIndex = index;\">\n    <ng-template mat-tab-label>\n      {{tab.title}}\n    </ng-template>\n\n    <mat-nav-list *ngIf=\"tabIndex===0\">\n      <mat-list-item [ngStyle]=\"{background: adding?'#525252':''}\" (click)=\"adding=true\">\n        <mat-icon>add</mat-icon>\n        <span *ngIf=\"!adding\">Add Task</span>\n        <mat-form-field *ngIf=\"adding\">\n            <input name=\"title\" type=\"text\" required matInput [(ngModel)]=\"addTitle\" />\n          </mat-form-field>\n      </mat-list-item>\n    </mat-nav-list>\n    <form #addForm=\"ngForm\" (ngSubmit)=\"add();\" *ngIf=\"adding\" class=\"add\">\n      <div class=\"colms\">\n        <!-- 到期日 -->\n        <p>\n          <mat-icon>date_range</mat-icon> Deadline\n        </p>\n        <mat-form-field>\n          <input name=\"date\" type=\"date\" matInput [(ngModel)]=\"addDate\" />\n        </mat-form-field>\n        <!-- 附檔 -->\n        <p>\n          <mat-icon>insert_drive_file</mat-icon> File\n        </p>\n        <button mat-raised-button mat-icon-button color=\"accent\" type=\"button\">\n          <mat-icon>add</mat-icon>\n        </button>\n        <!-- 說明 -->\n        <p>\n          <mat-icon>chat</mat-icon> Comments\n        </p>\n        <mat-form-field>\n          <textarea name=\"memo\" matInput placeholder=\"Type your memo here...\" [(ngModel)]=\"addMemo\"></textarea>\n        </mat-form-field>\n      </div>\n      <div>\n        <button type=\"button\" (click)=\"adding=false\" style=\"width: 50%\" mat-raised-button color=\"warning\">\n          <mat-icon>close</mat-icon> Cancel\n        </button>\n        <button style=\"width: 50%\" mat-raised-button color=\"primary\">\n          <mat-icon>add</mat-icon> Add Task\n        </button>\n      </div>\n    </form>\n\n    <div class=\"list\" *ngFor=\"let item of getTasks(tabIndex) | sort:'important';let taskIndex=index;\">\n      <div class=\"list-title\" [ngStyle]=\"{background: item.important ? '#c2185b':'#3c3c3c'}\">\n        <button color=\"{{item.edit?'primary':''}}\" (click)=\"item.edit=true;edit(taskIndex)\" mat-icon-button style=\"float: right;\">\n          <mat-icon>create</mat-icon>\n        </button>\n        <button (click)=\"item.important=!item.important\" mat-icon-button style=\"float: right;\">\n          <mat-icon [innerHTML]=\"item.important ? 'star' : 'star_border'\"></mat-icon>\n        </button>\n        <h2 style=\"padding-left: 16px\" [class]=\"item.selected?'del-status':''\">\n          <mat-checkbox [(ngModel)]=\"item.selected\">{{item.title}}</mat-checkbox>\n        </h2>\n        <div class=\"icon-group\">\n          <span *ngIf=\"item.date\">\n            <mat-icon color=\"accent\">date_range</mat-icon>\n            {{item.date}}\n          </span>\n          <mat-icon *ngIf=\"item.file\" color=\"accent\">insert_drive_file</mat-icon>\n          <mat-icon *ngIf=\"item.memo\" color=\"accent\">chat</mat-icon>\n        </div>\n      </div>\n      <!-- start編輯區 -->\n      <form #editForm=\"ngForm\" (ngSubmit)=\"save(taskIndex);item.edit=false;\" *ngIf=\"item.edit\" class=\"list-edit\">\n        <div class=\"colms\">\n          <!-- 到期日 -->\n          <p>\n            <mat-icon>date_range</mat-icon> Deadline\n          </p>\n          <mat-form-field>\n            <input name=\"date\" type=\"date\" matInput [(ngModel)]=\"newDate\" />\n          </mat-form-field>\n          <!-- 附檔 -->\n          <p>\n            <mat-icon>insert_drive_file</mat-icon> File\n          </p>\n          <button mat-raised-button mat-icon-button color=\"accent\" type=\"button\">\n            <mat-icon>add</mat-icon>\n          </button>\n          <!-- 說明 -->\n          <p>\n            <mat-icon>chat</mat-icon> Comments\n          </p>\n          <mat-form-field>\n            <textarea name=\"memo\" matInput placeholder=\"Type your memo here...\" [(ngModel)]=\"newMemo\"></textarea>\n          </mat-form-field>\n        </div>\n        <div>\n          <button type=\"button\" (click)=\"item.edit=false\" style=\"width: 50%\" mat-raised-button color=\"warning\">\n            <mat-icon>close</mat-icon> Cancel\n          </button>\n          <button style=\"width: 50%\" mat-raised-button color=\"primary\">\n            <mat-icon>add</mat-icon> Save\n          </button>\n        </div>\n      </form>\n    </div>\n  </mat-tab>\n</mat-tab-group>\n"
 
 /***/ }),
 
@@ -403,14 +453,14 @@ var TodoListComponent = /** @class */ (function () {
     }
     TodoListComponent.prototype.ngOnInit = function () {
         this.tabs = [
-            { type: 0, title: 'My Tasks' },
-            { type: 1, title: 'In Progress' },
-            { type: 2, title: 'Completed' }
+            { title: 'My Tasks' },
+            { title: 'In Progress' },
+            { title: 'Completed' }
         ];
         this.tasks = [
-            { selected: false, title: 'test', important: false, edit: false, date: '2018/6/21' },
-            { selected: true, title: 'demo', important: false, edit: false, memo: '去買菜' },
-            { selected: false, title: 'test', important: true, edit: false }
+            { selected: false, title: 'todo1', important: false, edit: false, date: '2018/6/21' },
+            { selected: true, title: 'todo2', important: false, edit: false, memo: '去買菜' },
+            { selected: false, title: 'todo3', important: true, edit: false }
         ];
     };
     TodoListComponent.prototype.getTasks = function (index) {
