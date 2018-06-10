@@ -1,25 +1,46 @@
 <form #myForm="ngForm" (ngSubmit)="submit()">
+  <h2>查詢報名結果</h2>
   <mat-form-field appearance="fill">
     <mat-label>
       <mat-icon>email</mat-icon>
       信箱
     </mat-label>
-    <input type="email"
-      name="信箱"
-      matInput
-      required
-      [(ngModel)]="mailValue"
-      #name="ngModel"
-      email/>
+    <input type="email" name="信箱" matInput required [(ngModel)]="mailValue" #name="ngModel" email/>
     <mat-hint>輸入信箱查詢報名狀態</mat-hint>
     <mat-error>輸入信箱阿阿阿</mat-error>
   </mat-form-field>
-  <br />  <br />
-  <button
-    mat-raised-button
-    color="primary"
-    type="submit"
-    [disabled]="!myForm.form.valid || progress"
-    [innerHTML]="progress?'載入中':'送出'"></button>
+  <br />
+  <br />
+  <button mat-raised-button color="primary" type="submit" [disabled]="!myForm.form.valid || progress" [innerHTML]="progress?'載入中':'送出'"></button>
   <p>{{result}}</p>
+</form>
+<mat-divider></mat-divider>
+<form #stageForm="ngForm" (ngSubmit)="submitStage()">
+  <h2>查詢闖關紀錄</h2>
+  <mat-form-field appearance="fill">
+    <mat-label>
+      <mat-icon>email</mat-icon>
+      信箱
+    </mat-label>
+    <input type="email" name="email" matInput required [(ngModel)]="stageValue" email/>
+    <mat-hint>輸入信箱查詢報名狀態</mat-hint>
+    <mat-error>輸入信箱阿阿阿</mat-error>
+  </mat-form-field>
+  <br />
+  <br />
+  <button mat-raised-button color="primary" type="submit" [disabled]="!stageForm.form.valid || stageProgress" [innerHTML]="stageProgress?'載入中':'送出'"></button>
+  <mat-nav-list>
+    <mat-list-item *ngFor="let item of stageResult">
+      <p matLine>關卡: {{item.stage}}</p>
+      <p matLine>tag:
+        <mat-chip-list>
+          <mat-chip *ngFor="let tag of item.tagItem">{{tag}}</mat-chip>
+        </mat-chip-list>
+      </p>
+      <p matLine>投稿時間: {{item.timeStamp | date}}</p>
+      <p matLine>Url:
+        <a [href]="item.url" target="_blank">{{item.url}}</a>
+      </p>
+    </mat-list-item>
+  </mat-nav-list>
 </form>

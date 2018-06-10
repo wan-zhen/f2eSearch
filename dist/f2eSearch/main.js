@@ -37,6 +37,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _sign_search_sign_search_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./sign-search/sign-search.component */ "./src/app/sign-search/sign-search.component.ts");
 /* harmony import */ var _todo_list_todo_list_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./todo-list/todo-list.component */ "./src/app/todo-list/todo-list.component.ts");
+/* harmony import */ var _sign_up_total_sign_up_total_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./sign-up-total/sign-up-total.component */ "./src/app/sign-up-total/sign-up-total.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -47,7 +48,9 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
 var routes = [
+    { path: '', component: _sign_up_total_sign_up_total_component__WEBPACK_IMPORTED_MODULE_4__["SignUpTotalComponent"] },
     { path: 'signSearch', component: _sign_search_sign_search_component__WEBPACK_IMPORTED_MODULE_2__["SignSearchComponent"] },
     { path: 'todoList', component: _todo_list_todo_list_component__WEBPACK_IMPORTED_MODULE_3__["TodoListComponent"] }
 ];
@@ -148,12 +151,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _todo_list_todo_list_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./todo-list/todo-list.component */ "./src/app/todo-list/todo-list.component.ts");
 /* harmony import */ var _ng_pipe_sort_pipe__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./ng-pipe/sort.pipe */ "./src/app/ng-pipe/sort.pipe.ts");
+/* harmony import */ var _sign_up_total_sign_up_total_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./sign-up-total/sign-up-total.component */ "./src/app/sign-up-total/sign-up-total.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -177,7 +182,8 @@ var AppModule = /** @class */ (function () {
                 _nav_nav_component__WEBPACK_IMPORTED_MODULE_4__["NavComponent"],
                 _sign_search_sign_search_component__WEBPACK_IMPORTED_MODULE_8__["SignSearchComponent"],
                 _todo_list_todo_list_component__WEBPACK_IMPORTED_MODULE_11__["TodoListComponent"],
-                _ng_pipe_sort_pipe__WEBPACK_IMPORTED_MODULE_12__["SortPipe"]
+                _ng_pipe_sort_pipe__WEBPACK_IMPORTED_MODULE_12__["SortPipe"],
+                _sign_up_total_sign_up_total_component__WEBPACK_IMPORTED_MODULE_13__["SignUpTotalComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
@@ -192,6 +198,7 @@ var AppModule = /** @class */ (function () {
                 _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatFormFieldModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatTabsModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatCheckboxModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatChipsModule"],
                 _app_routing_module__WEBPACK_IMPORTED_MODULE_7__["AppRoutingModule"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_9__["HttpClientModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_10__["FormsModule"]
@@ -225,7 +232,7 @@ module.exports = ".sidenav-container {\n  height: 100%;\n}\n\n.sidenav {\n  widt
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-sidenav-container class=\"sidenav-container\">\n  <mat-sidenav\n    #drawer\n    class=\"sidenav\"\n    fixedInViewport=\"true\"\n    [attr.role]=\"(isHandset$ | async) ? 'dialog' : 'navigation'\"\n    [mode]=\"(isHandset$ | async) ? 'over' : 'side'\"\n    [opened]=\"!(isHandset$ | async)\">\n    <mat-toolbar color=\"primary\">Menu</mat-toolbar>\n    <mat-nav-list>\n      <a mat-list-item routerLink=\"/signSearch\">報名查詢</a>\n      <a mat-list-item routerLink=\"/todoList\">待辦事項</a>\n      <a mat-list-item href=\"#\">Link 3</a>\n    </mat-nav-list>\n  </mat-sidenav>\n  <mat-sidenav-content>\n    <mat-toolbar color=\"primary\">\n      <button\n        type=\"button\"\n        aria-label=\"Toggle sidenav\"\n        mat-icon-button\n        (click)=\"drawer.toggle()\"\n        *ngIf=\"isHandset$ | async\">\n        <mat-icon aria-label=\"Side nav toggle icon\">menu</mat-icon>\n      </button>\n      <span>The F2E - 前端修練精神時光屋</span>\n    </mat-toolbar>\n    <div class=\"contain\">\n      <router-outlet></router-outlet>\n    </div>\n  </mat-sidenav-content>\n</mat-sidenav-container>\n"
+module.exports = "<mat-sidenav-container class=\"sidenav-container\">\n  <mat-sidenav\n    #drawer\n    class=\"sidenav\"\n    fixedInViewport=\"true\"\n    [attr.role]=\"(isHandset$ | async) ? 'dialog' : 'navigation'\"\n    [mode]=\"(isHandset$ | async) ? 'over' : 'side'\"\n    [opened]=\"!(isHandset$ | async)\">\n    <mat-toolbar color=\"primary\">Menu</mat-toolbar>\n    <mat-nav-list>\n      <a mat-list-item routerLink=\"/\">報名人數</a>\n      <a mat-list-item routerLink=\"/signSearch\">報名查詢</a>\n      <a mat-list-item routerLink=\"/todoList\">待辦事項</a>\n    </mat-nav-list>\n  </mat-sidenav>\n  <mat-sidenav-content>\n    <mat-toolbar color=\"primary\">\n      <button\n        type=\"button\"\n        aria-label=\"Toggle sidenav\"\n        mat-icon-button\n        (click)=\"drawer.toggle()\"\n        *ngIf=\"isHandset$ | async\">\n        <mat-icon aria-label=\"Side nav toggle icon\">menu</mat-icon>\n      </button>\n      <span>The F2E - 前端修練精神時光屋</span>\n    </mat-toolbar>\n    <div class=\"contain\">\n      <router-outlet></router-outlet>\n    </div>\n  </mat-sidenav-content>\n</mat-sidenav-container>\n"
 
 /***/ }),
 
@@ -340,7 +347,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form #myForm=\"ngForm\" (ngSubmit)=\"submit()\">\n  <mat-form-field appearance=\"fill\">\n    <mat-label>\n      <mat-icon>email</mat-icon>\n      信箱\n    </mat-label>\n    <input type=\"email\"\n      name=\"信箱\"\n      matInput\n      required\n      [(ngModel)]=\"mailValue\"\n      #name=\"ngModel\"\n      email/>\n    <mat-hint>輸入信箱查詢報名狀態</mat-hint>\n    <mat-error>輸入信箱阿阿阿</mat-error>\n  </mat-form-field>\n  <br />  <br />\n  <button\n    mat-raised-button\n    color=\"primary\"\n    type=\"submit\"\n    [disabled]=\"!myForm.form.valid || progress\"\n    [innerHTML]=\"progress?'載入中':'送出'\"></button>\n  <p>{{result}}</p>\n</form>\n"
+module.exports = "<form #myForm=\"ngForm\" (ngSubmit)=\"submit()\">\n  <h2>查詢報名結果</h2>\n  <mat-form-field appearance=\"fill\">\n    <mat-label>\n      <mat-icon>email</mat-icon>\n      信箱\n    </mat-label>\n    <input type=\"email\" name=\"信箱\" matInput required [(ngModel)]=\"mailValue\" #name=\"ngModel\" email/>\n    <mat-hint>輸入信箱查詢報名狀態</mat-hint>\n    <mat-error>輸入信箱阿阿阿</mat-error>\n  </mat-form-field>\n  <br />\n  <br />\n  <button mat-raised-button color=\"primary\" type=\"submit\" [disabled]=\"!myForm.form.valid || progress\" [innerHTML]=\"progress?'載入中':'送出'\"></button>\n  <p>{{result}}</p>\n</form>\n<mat-divider></mat-divider>\n<form #stageForm=\"ngForm\" (ngSubmit)=\"submitStage()\">\n  <h2>查詢闖關紀錄</h2>\n  <mat-form-field appearance=\"fill\">\n    <mat-label>\n      <mat-icon>email</mat-icon>\n      信箱\n    </mat-label>\n    <input type=\"email\" name=\"email\" matInput required [(ngModel)]=\"stageValue\" email/>\n    <mat-hint>輸入信箱查詢報名狀態</mat-hint>\n    <mat-error>輸入信箱阿阿阿</mat-error>\n  </mat-form-field>\n  <br />\n  <br />\n  <button mat-raised-button color=\"primary\" type=\"submit\" [disabled]=\"!stageForm.form.valid || stageProgress\" [innerHTML]=\"stageProgress?'載入中':'送出'\"></button>\n  <mat-nav-list>\n    <mat-list-item *ngFor=\"let item of stageResult\">\n      <p matLine>關卡: {{item.stage}}</p>\n      <p matLine>tag:\n        <mat-chip-list>\n          <mat-chip *ngFor=\"let tag of item.tagItem\">{{tag}}</mat-chip>\n        </mat-chip-list>\n      </p>\n      <p matLine>投稿時間: {{item.timeStamp | date}}</p>\n      <p matLine>Url:\n        <a [href]=\"item.url\" target=\"_blank\">{{item.url}}</a>\n      </p>\n    </mat-list-item>\n  </mat-nav-list>\n</form>\n"
 
 /***/ }),
 
@@ -373,6 +380,8 @@ var SignSearchComponent = /** @class */ (function () {
         this.result = '';
         this.mailValue = '';
         this.progress = false;
+        this.stageValue = '';
+        this.stageProgress = false;
     }
     SignSearchComponent.prototype.ngOnInit = function () {
     };
@@ -390,6 +399,16 @@ var SignSearchComponent = /** @class */ (function () {
             }
         });
     };
+    SignSearchComponent.prototype.submitStage = function () {
+        var _this = this;
+        this.stageProgress = true;
+        this.http.post('https://www.thef2e.com/api/stageCheck', { email: this.stageValue })
+            .subscribe(function (result) {
+            _this.stageProgress = false;
+            _this.stageResult = result;
+            _this.stageResult.forEach(function (i) { return i.tagItem = i.tag.split(','); });
+        });
+    };
     SignSearchComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-sign-search',
@@ -399,6 +418,77 @@ var SignSearchComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
     ], SignSearchComponent);
     return SignSearchComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/sign-up-total/sign-up-total.component.css":
+/*!***********************************************************!*\
+  !*** ./src/app/sign-up-total/sign-up-total.component.css ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/sign-up-total/sign-up-total.component.html":
+/*!************************************************************!*\
+  !*** ./src/app/sign-up-total/sign-up-total.component.html ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  報名人數 : {{total}}\n</p>\n"
+
+/***/ }),
+
+/***/ "./src/app/sign-up-total/sign-up-total.component.ts":
+/*!**********************************************************!*\
+  !*** ./src/app/sign-up-total/sign-up-total.component.ts ***!
+  \**********************************************************/
+/*! exports provided: SignUpTotalComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SignUpTotalComponent", function() { return SignUpTotalComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var SignUpTotalComponent = /** @class */ (function () {
+    function SignUpTotalComponent(http) {
+        this.http = http;
+    }
+    SignUpTotalComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.http.get('https://www.thef2e.com/api/signUpTotal')
+            .subscribe(function (arg) {
+            _this.total = arg.total;
+        });
+    };
+    SignUpTotalComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-sign-up-total',
+            template: __webpack_require__(/*! ./sign-up-total.component.html */ "./src/app/sign-up-total/sign-up-total.component.html"),
+            styles: [__webpack_require__(/*! ./sign-up-total.component.css */ "./src/app/sign-up-total/sign-up-total.component.css")]
+        }),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
+    ], SignUpTotalComponent);
+    return SignUpTotalComponent;
 }());
 
 

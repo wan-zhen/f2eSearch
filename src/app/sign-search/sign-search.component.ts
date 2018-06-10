@@ -10,6 +10,9 @@ export class SignSearchComponent implements OnInit {
   result = '';
   mailValue = '';
   progress = false;
+  stageValue = '';
+  stageProgress = false;
+  stageResult: IStage[];
   constructor(private http: HttpClient) { }
   ngOnInit() {
   }
@@ -26,4 +29,23 @@ export class SignSearchComponent implements OnInit {
         }
       });
   }
+
+  submitStage() {
+    this.stageProgress = true;
+    this.http.post<IStage[]>('https://www.thef2e.com/api/stageCheck', { email: this.stageValue })
+      .subscribe(result => {
+        this.stageProgress = false;
+        this.stageResult = result;
+        this.stageResult.forEach(i => i.tagItem = i.tag.split(','));
+      });
+  }
+}
+
+interface IStage {
+  mail?: string;
+  stage: number;
+  tag: string;
+  timeStamp: number;
+  url: string;
+  tagItem?: string[];
 }
