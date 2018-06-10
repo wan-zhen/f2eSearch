@@ -26,7 +26,7 @@
         <p>
           <mat-icon>insert_drive_file</mat-icon> File
         </p>
-        <button mat-raised-button mat-icon-button color="accent">
+        <button mat-raised-button mat-icon-button color="accent" type="button">
           <mat-icon>add</mat-icon>
         </button>
         <!-- 說明 -->
@@ -47,7 +47,7 @@
       </div>
     </form>
 
-    <div class="list" *ngFor="let item of getTasks(tabIndex);let taskIndex=index;">
+    <div class="list" *ngFor="let item of getTasks(tabIndex) | sort:'important';let taskIndex=index;">
       <div class="list-title" [ngStyle]="{background: item.important ? '#c2185b':'#3c3c3c'}">
         <button color="{{item.edit?'primary':''}}" (click)="item.edit=true;edit(taskIndex)" mat-icon-button style="float: right;">
           <mat-icon>create</mat-icon>
@@ -81,7 +81,7 @@
           <p>
             <mat-icon>insert_drive_file</mat-icon> File
           </p>
-          <button mat-raised-button mat-icon-button color="accent">
+          <button mat-raised-button mat-icon-button color="accent" type="button">
             <mat-icon>add</mat-icon>
           </button>
           <!-- 說明 -->

@@ -18,13 +18,13 @@ export class TodoListComponent implements OnInit {
 
   ngOnInit() {
     this.tabs = [
-      { type: 0, title: 'My Tasks' },
-      { type: 1, title: 'In Progress' },
-      { type: 2, title: 'Completed' }];
+      { title: 'My Tasks' },
+      { title: 'In Progress' },
+      { title: 'Completed' }];
     this.tasks = [
-      { selected: false, title: 'test', important: false, edit: false, date: '2018/6/21' },
-      { selected: true, title: 'demo', important: false, edit: false, memo: '去買菜' },
-      { selected: false, title: 'test', important: true, edit: false }];
+      { selected: false, title: 'todo1', important: false, edit: false, date: '2018/6/21' },
+      { selected: true, title: 'todo2', important: false, edit: false, memo: '去買菜' },
+      { selected: false, title: 'todo3', important: true, edit: false }];
   }
 
   getTasks(index: number): ITask[] {
@@ -70,7 +70,6 @@ export class TodoListComponent implements OnInit {
 }
 
 interface ITab {
-  type: number;
   title: string;
 }
 

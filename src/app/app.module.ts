@@ -14,12 +14,14 @@ import { SignSearchComponent } from './sign-search/sign-search.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { TodoListComponent } from './todo-list/todo-list.component';
+import { SortPipe } from './ng-pipe/sort.pipe';
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
     SignSearchComponent,
-    TodoListComponent
+    TodoListComponent,
+    SortPipe
   ],
   imports: [
     BrowserModule,
