@@ -48,7 +48,7 @@
     </form>
 
     <div class="list" *ngFor="let item of getTasks(tabIndex) | sort:'important';let taskIndex=index;">
-      <div class="list-title" [ngStyle]="{background: item.important ? '#c2185b':'#3c3c3c'}">
+      <div class="list-title" [ngStyle]="{background: item.important ? '#c2185b75':'#3c3c3c'}">
         <button color="{{item.edit?'primary':''}}" (click)="item.edit=true;edit(taskIndex)" mat-icon-button style="float: right;">
           <mat-icon>create</mat-icon>
         </button>
