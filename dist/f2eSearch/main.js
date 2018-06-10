@@ -36,6 +36,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _sign_search_sign_search_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./sign-search/sign-search.component */ "./src/app/sign-search/sign-search.component.ts");
+/* harmony import */ var _todo_list_todo_list_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./todo-list/todo-list.component */ "./src/app/todo-list/todo-list.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -45,8 +46,10 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
 var routes = [
-    { path: 'signSearch', component: _sign_search_sign_search_component__WEBPACK_IMPORTED_MODULE_2__["SignSearchComponent"] }
+    { path: 'signSearch', component: _sign_search_sign_search_component__WEBPACK_IMPORTED_MODULE_2__["SignSearchComponent"] },
+    { path: 'todoList', component: _todo_list_todo_list_component__WEBPACK_IMPORTED_MODULE_3__["TodoListComponent"] }
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -143,12 +146,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _sign_search_sign_search_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./sign-search/sign-search.component */ "./src/app/sign-search/sign-search.component.ts");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _todo_list_todo_list_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./todo-list/todo-list.component */ "./src/app/todo-list/todo-list.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -168,7 +173,8 @@ var AppModule = /** @class */ (function () {
             declarations: [
                 _app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"],
                 _nav_nav_component__WEBPACK_IMPORTED_MODULE_4__["NavComponent"],
-                _sign_search_sign_search_component__WEBPACK_IMPORTED_MODULE_8__["SignSearchComponent"]
+                _sign_search_sign_search_component__WEBPACK_IMPORTED_MODULE_8__["SignSearchComponent"],
+                _todo_list_todo_list_component__WEBPACK_IMPORTED_MODULE_11__["TodoListComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
@@ -181,6 +187,8 @@ var AppModule = /** @class */ (function () {
                 _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatListModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatInputModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatFormFieldModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatTabsModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatCheckboxModule"],
                 _app_routing_module__WEBPACK_IMPORTED_MODULE_7__["AppRoutingModule"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_9__["HttpClientModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_10__["FormsModule"]
@@ -203,7 +211,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".sidenav-container {\n  height: 100%;\n}\n\n.sidenav {\n  width: 200px;\n  box-shadow: 3px 0 6px rgba(0,0,0,.24);\n}\n"
+module.exports = ".sidenav-container {\n  height: 100%;\n}\n\n.sidenav {\n  width: 200px;\n  box-shadow: 3px 0 6px rgba(0, 0, 0, .24);\n}\n"
 
 /***/ }),
 
@@ -214,7 +222,7 @@ module.exports = ".sidenav-container {\n  height: 100%;\n}\n\n.sidenav {\n  widt
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-sidenav-container class=\"sidenav-container\">\n  <mat-sidenav\n    #drawer\n    class=\"sidenav\"\n    fixedInViewport=\"true\"\n    [attr.role]=\"(isHandset$ | async) ? 'dialog' : 'navigation'\"\n    [mode]=\"(isHandset$ | async) ? 'over' : 'side'\"\n    [opened]=\"!(isHandset$ | async)\">\n    <mat-toolbar color=\"primary\">Menu</mat-toolbar>\n    <mat-nav-list>\n      <a mat-list-item routerLink=\"/signSearch\">報名查詢</a>\n      <a mat-list-item href=\"#\">Link 2</a>\n      <a mat-list-item href=\"#\">Link 3</a>\n    </mat-nav-list>\n  </mat-sidenav>\n  <mat-sidenav-content>\n    <mat-toolbar color=\"primary\">\n      <button\n        type=\"button\"\n        aria-label=\"Toggle sidenav\"\n        mat-icon-button\n        (click)=\"drawer.toggle()\"\n        *ngIf=\"isHandset$ | async\">\n        <mat-icon aria-label=\"Side nav toggle icon\">menu</mat-icon>\n      </button>\n      <span>The F2E - 前端修練精神時光屋</span>\n    </mat-toolbar>\n    <div class=\"contain\">\n      <router-outlet></router-outlet>\n    </div>\n  </mat-sidenav-content>\n</mat-sidenav-container>\n"
+module.exports = "<mat-sidenav-container class=\"sidenav-container\">\n  <mat-sidenav\n    #drawer\n    class=\"sidenav\"\n    fixedInViewport=\"true\"\n    [attr.role]=\"(isHandset$ | async) ? 'dialog' : 'navigation'\"\n    [mode]=\"(isHandset$ | async) ? 'over' : 'side'\"\n    [opened]=\"!(isHandset$ | async)\">\n    <mat-toolbar color=\"primary\">Menu</mat-toolbar>\n    <mat-nav-list>\n      <a mat-list-item routerLink=\"/signSearch\">報名查詢</a>\n      <a mat-list-item routerLink=\"/todoList\">待辦事項</a>\n      <a mat-list-item href=\"#\">Link 3</a>\n    </mat-nav-list>\n  </mat-sidenav>\n  <mat-sidenav-content>\n    <mat-toolbar color=\"primary\">\n      <button\n        type=\"button\"\n        aria-label=\"Toggle sidenav\"\n        mat-icon-button\n        (click)=\"drawer.toggle()\"\n        *ngIf=\"isHandset$ | async\">\n        <mat-icon aria-label=\"Side nav toggle icon\">menu</mat-icon>\n      </button>\n      <span>The F2E - 前端修練精神時光屋</span>\n    </mat-toolbar>\n    <div class=\"contain\">\n      <router-outlet></router-outlet>\n    </div>\n  </mat-sidenav-content>\n</mat-sidenav-container>\n"
 
 /***/ }),
 
@@ -341,6 +349,118 @@ var SignSearchComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
     ], SignSearchComponent);
     return SignSearchComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/todo-list/todo-list.component.css":
+/*!***************************************************!*\
+  !*** ./src/app/todo-list/todo-list.component.css ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".add {\r\n  background: #3c3c3c;\r\n}\r\n\r\n.add .colms {\r\n  padding: 25px;\r\n}\r\n\r\n.list {\r\n  margin: 10px 0;\r\n  background: #3c3c3c;\r\n}\r\n\r\n.list .list-title {\r\n  border-bottom: 1px solid #303030;\r\n}\r\n\r\n.icon-group {\r\n  margin: 10px 0 10px 37px;\r\n}\r\n\r\n.icon-group mat-icon {\r\n  margin: 0 5px;\r\n  font-size: 18px;\r\n}\r\n\r\n.list-edit .colms {\r\n  padding: 25px;\r\n}\r\n\r\n.del-status {\r\n  color: #737373;\r\n  text-decoration: line-through;\r\n}\r\n"
+
+/***/ }),
+
+/***/ "./src/app/todo-list/todo-list.component.html":
+/*!****************************************************!*\
+  !*** ./src/app/todo-list/todo-list.component.html ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<mat-tab-group>\n  <mat-tab *ngFor=\"let tab of tabs;let tabIndex = index;\">\n    <ng-template mat-tab-label>\n      {{tab.title}}\n    </ng-template>\n\n    <mat-nav-list *ngIf=\"tabIndex===0\">\n      <mat-list-item [ngStyle]=\"{background: adding?'#525252':''}\" (click)=\"adding=true\">\n        <mat-icon>add</mat-icon>\n        <span *ngIf=\"!adding\">Add Task</span>\n        <mat-form-field *ngIf=\"adding\">\n            <input name=\"title\" type=\"text\" required matInput [(ngModel)]=\"addTitle\" />\n          </mat-form-field>\n      </mat-list-item>\n    </mat-nav-list>\n    <form #addForm=\"ngForm\" (ngSubmit)=\"add();\" *ngIf=\"adding\" class=\"add\">\n      <div class=\"colms\">\n        <!-- 到期日 -->\n        <p>\n          <mat-icon>date_range</mat-icon> Deadline\n        </p>\n        <mat-form-field>\n          <input name=\"date\" type=\"date\" matInput [(ngModel)]=\"addDate\" />\n        </mat-form-field>\n        <!-- 附檔 -->\n        <p>\n          <mat-icon>insert_drive_file</mat-icon> File\n        </p>\n        <button mat-raised-button mat-icon-button color=\"accent\">\n          <mat-icon>add</mat-icon>\n        </button>\n        <!-- 說明 -->\n        <p>\n          <mat-icon>chat</mat-icon> Comments\n        </p>\n        <mat-form-field>\n          <textarea name=\"memo\" matInput placeholder=\"Type your memo here...\" [(ngModel)]=\"addMemo\"></textarea>\n        </mat-form-field>\n      </div>\n      <div>\n        <button type=\"button\" (click)=\"adding=false\" style=\"width: 50%\" mat-raised-button color=\"warning\">\n          <mat-icon>close</mat-icon> Cancel\n        </button>\n        <button style=\"width: 50%\" mat-raised-button color=\"primary\">\n          <mat-icon>add</mat-icon> Add Task\n        </button>\n      </div>\n    </form>\n\n    <div class=\"list\" *ngFor=\"let item of getTasks(tabIndex);let taskIndex=index;\">\n      <div class=\"list-title\" [ngStyle]=\"{background: item.important ? '#c2185b':'#3c3c3c'}\">\n        <button color=\"{{item.edit?'primary':''}}\" (click)=\"item.edit=true;edit(taskIndex)\" mat-icon-button style=\"float: right;\">\n          <mat-icon>create</mat-icon>\n        </button>\n        <button (click)=\"item.important=!item.important\" mat-icon-button style=\"float: right;\">\n          <mat-icon [innerHTML]=\"item.important ? 'star' : 'star_border'\"></mat-icon>\n        </button>\n        <h2 style=\"padding-left: 16px\" [class]=\"item.selected?'del-status':''\">\n          <mat-checkbox [(ngModel)]=\"item.selected\">{{item.title}}</mat-checkbox>\n        </h2>\n        <div class=\"icon-group\">\n          <span *ngIf=\"item.date\">\n            <mat-icon color=\"accent\">date_range</mat-icon>\n            {{item.date}}\n          </span>\n          <mat-icon *ngIf=\"item.file\" color=\"accent\">insert_drive_file</mat-icon>\n          <mat-icon *ngIf=\"item.memo\" color=\"accent\">chat</mat-icon>\n        </div>\n      </div>\n      <!-- start編輯區 -->\n      <form #editForm=\"ngForm\" (ngSubmit)=\"save(taskIndex);item.edit=false;\" *ngIf=\"item.edit\" class=\"list-edit\">\n        <div class=\"colms\">\n          <!-- 到期日 -->\n          <p>\n            <mat-icon>date_range</mat-icon> Deadline\n          </p>\n          <mat-form-field>\n            <input name=\"date\" type=\"date\" matInput [(ngModel)]=\"newDate\" />\n          </mat-form-field>\n          <!-- 附檔 -->\n          <p>\n            <mat-icon>insert_drive_file</mat-icon> File\n          </p>\n          <button mat-raised-button mat-icon-button color=\"accent\">\n            <mat-icon>add</mat-icon>\n          </button>\n          <!-- 說明 -->\n          <p>\n            <mat-icon>chat</mat-icon> Comments\n          </p>\n          <mat-form-field>\n            <textarea name=\"memo\" matInput placeholder=\"Type your memo here...\" [(ngModel)]=\"newMemo\"></textarea>\n          </mat-form-field>\n        </div>\n        <div>\n          <button type=\"button\" (click)=\"item.edit=false\" style=\"width: 50%\" mat-raised-button color=\"warning\">\n            <mat-icon>close</mat-icon> Cancel\n          </button>\n          <button style=\"width: 50%\" mat-raised-button color=\"primary\">\n            <mat-icon>add</mat-icon> Save\n          </button>\n        </div>\n      </form>\n    </div>\n  </mat-tab>\n</mat-tab-group>\n"
+
+/***/ }),
+
+/***/ "./src/app/todo-list/todo-list.component.ts":
+/*!**************************************************!*\
+  !*** ./src/app/todo-list/todo-list.component.ts ***!
+  \**************************************************/
+/*! exports provided: TodoListComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TodoListComponent", function() { return TodoListComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var TodoListComponent = /** @class */ (function () {
+    function TodoListComponent() {
+    }
+    TodoListComponent.prototype.ngOnInit = function () {
+        this.tabs = [
+            { type: 0, title: 'My Tasks' },
+            { type: 1, title: 'In Progress' },
+            { type: 2, title: 'Completed' }
+        ];
+        this.tasks = [
+            { selected: false, title: 'test', important: false, edit: false, date: '2018/6/21' },
+            { selected: true, title: 'demo', important: false, edit: false, memo: '去買菜' },
+            { selected: false, title: 'test', important: true, edit: false }
+        ];
+    };
+    TodoListComponent.prototype.getTasks = function (index) {
+        return this.tasks
+            .filter(function (i) {
+            switch (index) {
+                case 1:
+                    return i.selected === false;
+                case 2:
+                    return i.selected === true;
+                default:
+                    return i;
+            }
+        });
+    };
+    TodoListComponent.prototype.edit = function (index) {
+        this.newDate = this.tasks[index].date;
+        this.newMemo = this.tasks[index].memo;
+    };
+    TodoListComponent.prototype.save = function (index) {
+        this.tasks[index].date = this.newDate;
+        this.tasks[index].memo = this.newMemo;
+    };
+    TodoListComponent.prototype.add = function () {
+        if (!this.addTitle) {
+            alert('請填寫 task 名稱');
+            return;
+        }
+        this.adding = false;
+        this.tasks.push({
+            selected: false,
+            title: this.addTitle,
+            important: false,
+            edit: false,
+            date: this.addDate,
+            memo: this.addMemo
+        });
+        this.addTitle = '';
+        this.addDate = '';
+        this.addMemo = '';
+    };
+    TodoListComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-todo-list',
+            template: __webpack_require__(/*! ./todo-list.component.html */ "./src/app/todo-list/todo-list.component.html"),
+            styles: [__webpack_require__(/*! ./todo-list.component.css */ "./src/app/todo-list/todo-list.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], TodoListComponent);
+    return TodoListComponent;
 }());
 
 

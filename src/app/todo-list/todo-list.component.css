@@ -1,0 +1,34 @@
+.add {
+  background: #3c3c3c;
+}
+
+.add .colms {
+  padding: 25px;
+}
+
+.list {
+  margin: 10px 0;
+  background: #3c3c3c;
+}
+
+.list .list-title {
+  border-bottom: 1px solid #303030;
+}
+
+.icon-group {
+  margin: 10px 0 10px 37px;
+}
+
+.icon-group mat-icon {
+  margin: 0 5px;
+  font-size: 18px;
+}
+
+.list-edit .colms {
+  padding: 25px;
+}
+
+.del-status {
+  color: #737373;
+  text-decoration: line-through;
+}
