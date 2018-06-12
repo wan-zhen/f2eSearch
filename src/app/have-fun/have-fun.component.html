@@ -1,0 +1,43 @@
+<mat-toolbar color="accent">
+  <span>HaveFun</span>
+</mat-toolbar>
+<mat-sidenav-container>
+  <mat-sidenav opened="true" mode="side">
+    <h4>搜尋</h4>
+    <mat-form-field appearance="fill">
+      <mat-label>
+        <mat-icon>search</mat-icon>
+        關鍵字
+      </mat-label>
+      <input type="text" name="搜尋文章" matInput/>
+      <mat-hint>輸入關鍵字搜尋景點</mat-hint>
+    </mat-form-field>
+    <mat-divider></mat-divider>
+    <h4>所在地區</h4>
+    <mat-form-field>
+      <mat-select placeholder="地區" multiple>
+        <mat-option *ngFor="let zone of zoneData" [value]="zone">{{zone}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-divider></mat-divider>
+    <h4>分類</h4>
+    <mat-checkbox>付費</mat-checkbox>
+    <br>
+    <mat-checkbox>全天候開放</mat-checkbox>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-card *ngFor="let item of recordsData">
+      <mat-card-header>
+        <mat-card-title>{{item.Name}}</mat-card-title>
+        <mat-card-subtitle>User Id: </mat-card-subtitle>
+        <img mat-card-avatar src="{{item.Picture1}}" />
+      </mat-card-header>
+      <img mat-card-image src="{{item.Picture1}}" />
+      <mat-card-content>{{item.Description}}</mat-card-content>
+      <mat-card-actions align="end">
+        <button mat-button color="paimray">繼續閱讀</button>
+      </mat-card-actions>
+      <mat-card-footer>{{item.Opentime}}</mat-card-footer>
+    </mat-card>
+  </mat-sidenav-content>
+</mat-sidenav-container>
