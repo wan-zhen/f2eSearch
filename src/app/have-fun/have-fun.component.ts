@@ -18,7 +18,15 @@ export class HaveFunComponent implements OnInit {
       .subscribe(arg => {
         console.log(arg.result.records);
         this.recordsData = arg.result.records;
-        this.recordsData.forEach(v => this.zoneData.push(v.Zone));
+        this.recordsData.forEach(v => {
+          this.zoneData.push(v.Zone);
+          if (v.Ticketinfo === '' || v.Ticketinfo === '免費參觀') {
+            v.free = true;
+          }
+          if (v.Opentime === '全天候開放') {
+            v.allOpen = true;
+          }
+        });
         this.zoneData = this.zoneData.filter((v, i, arr) => arr.indexOf(v) === i);
         console.log(this.zoneData);
       });
@@ -44,4 +52,6 @@ interface IRecordArray {
   Tel: string;
   Ticketinfo: string;
   Zone: string;
+  free?: boolean;
+  allOpen?: boolean;
 }

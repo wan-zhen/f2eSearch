@@ -1,0 +1,25 @@
+.mat-card {
+  margin: 0 0 15px 0;
+}
+
+.mat-card:hover {
+  box-shadow: none;
+  background-color: #353535;
+  cursor: pointer;
+}
+
+.mat-card-content {
+  position: relative;
+  line-height: 1.5em;
+  height: 3em;
+  overflow: hidden;
+}
+
+.mat-card-content:after {
+  content: "...";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 0 5px;
+  color: #fff;
+}
