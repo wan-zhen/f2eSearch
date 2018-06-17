@@ -8,7 +8,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import {
   MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule,
   MatListModule, MatInputModule, MatFormFieldModule, MatTabsModule, MatCheckboxModule, MatChipsModule,
-  MatCardModule, MatSelectModule
+  MatCardModule, MatSelectModule, MatPaginatorModule
 } from '@angular/material';
 import { AppRoutingModule } from './/app-routing.module';
 import { SignSearchComponent } from './sign-search/sign-search.component';
@@ -17,7 +17,7 @@ import { FormsModule } from '@angular/forms';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { SortPipe } from './ng-pipe/sort.pipe';
 import { SignUpTotalComponent } from './sign-up-total/sign-up-total.component';
-import { HaveFunComponent } from './have-fun/have-fun.component';
+import { HaveFunNavComponent } from './have-fun-nav/have-fun-nav.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +26,7 @@ import { HaveFunComponent } from './have-fun/have-fun.component';
     TodoListComponent,
     SortPipe,
     SignUpTotalComponent,
-    HaveFunComponent
+    HaveFunNavComponent
   ],
   imports: [
     BrowserModule,
@@ -44,6 +44,7 @@ import { HaveFunComponent } from './have-fun/have-fun.component';
     MatChipsModule,
     MatCardModule,
     MatSelectModule,
+    MatPaginatorModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule
